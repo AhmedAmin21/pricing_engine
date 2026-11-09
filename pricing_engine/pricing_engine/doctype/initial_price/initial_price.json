@@ -1,0 +1,145 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "format:IP-{item_code}-{effective_date}",
+ "creation": "2026-05-21 15:00:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_code",
+  "item_name",
+  "pricing_plan",
+  "column_break_1",
+  "chinese_price",
+  "material_price_usd",
+  "effective_date",
+  "section_break_1",
+  "supplier",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item Code",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "item_code.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "default": "Imported",
+   "fieldname": "pricing_plan",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Pricing Plan",
+   "options": "Imported\nManufactured",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.pricing_plan == 'Imported'",
+   "fieldname": "chinese_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Chinese Price",
+   "mandatory_depends_on": "eval:doc.pricing_plan == 'Imported'",
+   "options": "CNY",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.pricing_plan == 'Manufactured'",
+   "fieldname": "material_price_usd",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Material Price (USD)",
+   "mandatory_depends_on": "eval:doc.pricing_plan == 'Manufactured'",
+   "precision": "2"
+  },
+  {
+   "default": "Today",
+   "fieldname": "effective_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Effective Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_1",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-03 18:20:05.458733",
+ "modified_by": "Administrator",
+ "module": "Pricing Engine",
+ "name": "Initial Price",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Item Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User"
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "effective_date",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

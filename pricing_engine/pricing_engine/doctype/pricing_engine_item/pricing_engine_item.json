@@ -1,0 +1,181 @@
+{
+ "actions": [],
+ "creation": "2026-05-23 14:00:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+  "field_order": [
+   "item_code",
+   "item_name",
+   "pricing_plan",
+   "chinese_price",
+   "factory_markup_percent",
+   "factory_price_usd",
+   "column_break_1",
+   "cny_usd_rate",
+   "price_after_conversion_usd",
+   "shipping_factor",
+   "price_after_shipping_usd",
+   "column_break_2",
+   "wholesale_usd_markup",
+   "wholesale_usd_price",
+   "usd_egp_rate",
+   "wholesale_egp_price",
+   "retail_egp_markup",
+   "retail_egp_price"
+  ],
+  "fields": [
+   {
+    "columns": 2,
+    "fieldname": "item_code",
+    "fieldtype": "Link",
+    "in_list_view": 1,
+    "label": "Item Code",
+    "options": "Item",
+    "reqd": 1
+   },
+   {
+    "columns": 2,
+    "fetch_from": "item_code.item_name",
+    "fieldname": "item_name",
+    "fieldtype": "Data",
+    "in_list_view": 1,
+    "label": "Item Name",
+    "read_only": 1
+   },
+   {
+    "fieldname": "pricing_plan",
+    "fieldtype": "Select",
+    "label": "Pricing Plan",
+    "options": "Imported\nManufactured",
+    "read_only": 1
+   },
+   {
+    "columns": 1,
+    "depends_on": "eval:doc.pricing_plan == 'Imported'",
+    "fieldname": "chinese_price",
+    "fieldtype": "Float",
+    "in_list_view": 1,
+    "label": "Chinese Price"
+   },
+   {
+    "depends_on": "eval:doc.pricing_plan == 'Manufactured'",
+    "fieldname": "factory_markup_percent",
+    "fieldtype": "Percent",
+    "label": "Factory Markup (%)"
+   },
+   {
+    "columns": 1,
+    "depends_on": "eval:doc.pricing_plan == 'Manufactured'",
+    "fieldname": "factory_price_usd",
+    "fieldtype": "Float",
+    "in_list_view": 1,
+    "label": "Factory Price (USD)",
+    "read_only": 1
+   },
+   {
+    "fieldname": "column_break_1",
+    "fieldtype": "Column Break"
+   },
+   {
+    "depends_on": "eval:doc.pricing_plan == 'Imported'",
+    "description": "Exchange rate: 1 USD = ? CNY",
+    "fieldname": "cny_usd_rate",
+    "fieldtype": "Float",
+    "label": "CNY \u2192 USD Rate",
+    "precision": "4",
+    "reqd": 0
+   },
+   {
+    "columns": 1,
+    "depends_on": "eval:doc.pricing_plan == 'Imported'",
+    "fieldname": "price_after_conversion_usd",
+    "fieldtype": "Float",
+    "in_list_view": 1,
+    "label": "Price After Conversion (USD)",
+    "read_only": 1
+   },
+   {
+    "depends_on": "eval:doc.pricing_plan == 'Imported'",
+    "description": "e.g. 15% = 15",
+    "fieldname": "shipping_factor",
+    "fieldtype": "Percent",
+    "label": "Shipping Factor",
+    "reqd": 0
+   },
+   {
+    "columns": 1,
+    "depends_on": "eval:doc.pricing_plan == 'Imported'",
+    "fieldname": "price_after_shipping_usd",
+    "fieldtype": "Float",
+    "in_list_view": 1,
+    "label": "Price After Shipping (USD)",
+    "read_only": 1
+   },
+   {
+    "fieldname": "column_break_2",
+    "fieldtype": "Column Break"
+   },
+   {
+    "depends_on": "eval:doc.pricing_plan == 'Imported'",
+    "description": "e.g. 30% = 30",
+    "fieldname": "wholesale_usd_markup",
+    "fieldtype": "Percent",
+    "label": "Wholesale USD Markup",
+    "reqd": 0
+   },
+   {
+    "columns": 1,
+    "fieldname": "wholesale_usd_price",
+    "fieldtype": "Float",
+    "in_list_view": 1,
+    "label": "Wholesale USD Price",
+    "read_only": 1
+   },
+   {
+    "description": "Exchange rate: 1 USD = ? EGP",
+    "fieldname": "usd_egp_rate",
+    "fieldtype": "Float",
+    "label": "USD \u2192 EGP Rate",
+    "precision": "4",
+    "reqd": 0
+   },
+   {
+    "columns": 1,
+    "fieldname": "wholesale_egp_price",
+    "fieldtype": "Currency",
+    "in_list_view": 1,
+    "label": "Wholesale EGP Price",
+    "options": "EGP",
+    "read_only": 1
+   },
+   {
+    "description": "e.g. 25% = 25",
+    "fieldname": "retail_egp_markup",
+    "fieldtype": "Percent",
+    "label": "Retail EGP Markup",
+    "reqd": 0
+   },
+   {
+    "columns": 1,
+    "fieldname": "retail_egp_price",
+    "fieldtype": "Currency",
+    "in_list_view": 1,
+    "label": "Retail EGP Price",
+    "options": "EGP",
+    "read_only": 1
+   }
+  ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-05-23 15:27:46.766264",
+ "modified_by": "Administrator",
+ "module": "Pricing Engine",
+ "name": "Pricing Engine Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

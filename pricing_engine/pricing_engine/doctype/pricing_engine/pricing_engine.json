@@ -1,0 +1,299 @@
+{
+    "actions": [],
+    "allow_rename": 1,
+    "autoname": "field:title",
+    "creation": "2026-05-23 16:15:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "title",
+        "date",
+        "status",
+        "section_defaults",
+        "default_cny_usd_rate",
+        "default_shipping_factor",
+        "default_wholesale_usd_markup",
+        "column_break_1",
+        "default_usd_egp_rate",
+        "default_retail_egp_markup",
+        "section_buttons",
+        "fetch_items",
+        "apply_defaults",
+        "update_chinese_prices",
+        "column_break_buttons",
+        "apply_to_item_prices",
+        "section_price_lists",
+        "wholesale_usd_price_list",
+        "wholesale_egp_price_list",
+        "retail_egp_price_list",
+        "section_items",
+        "items"
+    ],
+    "fields": [
+        {
+            "fieldname": "title",
+            "fieldtype": "Data",
+            "label": "Title",
+            "reqd": 1,
+            "unique": 1,
+            "set_only_once": 1,
+            "in_list_view": 1,
+            "description": "e.g. 'May 2026 Wholesale Pricing' or 'Q2 Retail Update'"
+        },
+        {
+            "fieldname": "date",
+            "fieldtype": "Date",
+            "label": "Date",
+            "reqd": 1,
+            "default": "Today"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "Draft\nReviewed\nApplied\nRe-Applied",
+            "reqd": 1,
+            "default": "Draft",
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "pricing_plan",
+            "fieldtype": "Select",
+            "label": "Pricing Plan",
+            "options": "Imported\nManufactured",
+            "reqd": 1,
+            "default": "Imported"
+        },
+        {
+            "fieldname": "section_defaults",
+            "fieldtype": "Section Break",
+            "label": "Imported Settings",
+            "depends_on": "eval:doc.pricing_plan == 'Imported'"
+        },
+        {
+            "fieldname": "default_cny_usd_rate",
+            "fieldtype": "Float",
+            "label": "Default CNY → USD Rate",
+            "precision": "4",
+            "description": "e.g. 7.24"
+        },
+        {
+            "fieldname": "default_shipping_factor",
+            "fieldtype": "Percent",
+            "label": "Default Shipping Factor",
+            "description": "e.g. 15% = 15"
+        },
+        {
+            "fieldname": "default_wholesale_usd_markup",
+            "fieldtype": "Percent",
+            "label": "Default Wholesale USD Markup",
+            "description": "e.g. 30% = 30"
+        },
+        {
+            "fieldname": "column_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "default_usd_egp_rate",
+            "fieldtype": "Float",
+            "label": "Default USD → EGP Rate",
+            "precision": "4",
+            "description": "e.g. 49.50"
+        },
+        {
+            "fieldname": "default_retail_egp_markup",
+            "fieldtype": "Percent",
+            "label": "Default Retail EGP Markup",
+            "description": "e.g. 25% = 25"
+        },
+        {
+            "fieldname": "section_manufactured",
+            "fieldtype": "Section Break",
+            "label": "Manufactured Settings",
+            "depends_on": "eval:doc.pricing_plan == 'Manufactured'"
+        },
+        {
+            "fieldname": "material_item_code",
+            "fieldtype": "Link",
+            "label": "Material Item",
+            "options": "Item",
+            "description": "Select the raw material rod"
+        },
+        {
+            "fieldname": "material_price_usd",
+            "fieldtype": "Currency",
+            "label": "Material Price (USD)",
+            "options": "USD",
+            "read_only": 1
+        },
+        {
+            "fieldname": "pieces_from_rod",
+            "fieldtype": "Float",
+            "label": "Pieces From Rod",
+            "description": "How many finished pieces are produced from 1 rod?"
+        },
+        {
+            "fieldname": "piece_price_usd",
+            "fieldtype": "Currency",
+            "label": "Piece Price (USD)",
+            "options": "USD",
+            "read_only": 1
+        },
+        {
+            "fieldname": "factory_markup_percent",
+            "fieldtype": "Percent",
+            "label": "Factory Markup (%)",
+            "description": "e.g. 30% = 30"
+        },
+        {
+            "fieldname": "factory_price_usd",
+            "fieldtype": "Currency",
+            "label": "Factory Price (USD)",
+            "options": "USD",
+            "read_only": 1
+        },
+        {
+            "fieldname": "column_break_manu",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "manu_default_usd_egp_rate",
+            "fieldtype": "Float",
+            "label": "Default USD → EGP Rate",
+            "precision": "4",
+            "depends_on": "eval:doc.pricing_plan == 'Manufactured'"
+        },
+        {
+            "fieldname": "manu_default_retail_egp_markup",
+            "fieldtype": "Percent",
+            "label": "Default Retail EGP Markup",
+            "depends_on": "eval:doc.pricing_plan == 'Manufactured'"
+        },
+        {
+            "fieldname": "section_buttons",
+            "fieldtype": "Section Break",
+            "label": "Actions"
+        },
+        {
+            "fieldname": "fetch_items",
+            "fieldtype": "Button",
+            "label": "Fetch Items",
+            "options": "Fetch Items"
+        },
+        {
+            "fieldname": "apply_defaults",
+            "fieldtype": "Button",
+            "label": "Apply Defaults",
+            "options": "Apply Defaults"
+        },
+        {
+            "fieldname": "update_chinese_prices",
+            "fieldtype": "Button",
+            "label": "Update Chinese Prices",
+            "options": "Update Chinese Prices"
+        },
+        {
+            "fieldname": "column_break_buttons",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "apply_to_item_prices",
+            "fieldtype": "Button",
+            "label": "Apply to Item Prices",
+            "options": "Apply to Item Prices"
+        },
+        {
+            "fieldname": "section_price_lists",
+            "fieldtype": "Section Break",
+            "label": "Target Price Lists"
+        },
+        {
+            "fieldname": "wholesale_usd_price_list",
+            "fieldtype": "Link",
+            "label": "Wholesale USD Price List",
+            "options": "Price List",
+            "reqd": 0,
+            "description": "Must be a USD Price List"
+        },
+        {
+            "fieldname": "wholesale_egp_price_list",
+            "fieldtype": "Link",
+            "label": "Wholesale EGP Price List",
+            "options": "Price List",
+            "reqd": 0,
+            "description": "Must be an EGP Price List"
+        },
+        {
+            "fieldname": "retail_egp_price_list",
+            "fieldtype": "Link",
+            "label": "Retail EGP Price List",
+            "options": "Price List",
+            "reqd": 0,
+            "description": "Must be an EGP Price List"
+        },
+        {
+            "fieldname": "section_items",
+            "fieldtype": "Section Break",
+            "label": "Items"
+        },
+        {
+            "fieldname": "items",
+            "fieldtype": "Table",
+            "label": "Items",
+            "options": "Pricing Engine Item",
+            "reqd": 1
+        }
+    ],
+    "index_web_pages_for_search": 1,
+    "links": [],
+    "modified": "2026-05-23 16:20:00.000000",
+    "modified_by": "Administrator",
+    "module": "Pricing Engine",
+    "name": "Pricing Engine",
+    "naming_rule": "By fieldname",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "Item Manager",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "create": 0,
+            "delete": 0,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "Sales User",
+            "share": 0,
+            "write": 0
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "title_field": "title",
+    "track_changes": 1
+}

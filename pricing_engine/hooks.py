@@ -23,7 +23,7 @@ app_license = "mit"
 
 # Includes in <head>
 # ------------------
-
+#doctype_js = {"Pricing Engine": "pricing_engine/doctype/pricing_engine/pricing_engine.js"}
 # include js, css files in header of desk.html
 # app_include_css = "/assets/pricing_engine/css/pricing_engine.css"
 # app_include_js = "/assets/pricing_engine/js/pricing_engine.js"
